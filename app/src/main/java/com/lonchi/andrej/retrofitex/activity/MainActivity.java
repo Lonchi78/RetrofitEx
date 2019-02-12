@@ -2,9 +2,12 @@ package com.lonchi.andrej.retrofitex.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
 import com.lonchi.andrej.retrofitex.R;
+import com.lonchi.andrej.retrofitex.adapter.MoviesAdapter;
 import com.lonchi.andrej.retrofitex.model.Movie;
 import com.lonchi.andrej.retrofitex.model.MovieResponse;
 import com.lonchi.andrej.retrofitex.rest.ApiClient;
@@ -27,6 +30,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        final RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.recyclerview);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
         //  Tvorba klienta a nadviazanie spojenia
         ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
 
@@ -39,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
                 List<Movie> movies = null;
                 if (response.body() != null) {
                     movies = response.body().getResults();
+                    mRecyclerView.setAdapter(new MoviesAdapter(movies, R.layout.list_item_movie, getApplicationContext()));
                     Log.d(TAG, "Number of movies received: " + movies.size());
                 }else{
                     Log.d(TAG, "Empty body!");

@@ -14,7 +14,7 @@ public class Movie {
     private int id;
     @SerializedName("video")
     private boolean video;
-    @SerializedName("vote_avarage")
+    @SerializedName("vote_average")
     private float voteAverage;
     @SerializedName("title")
     private String title;
@@ -33,14 +33,14 @@ public class Movie {
     @SerializedName("overview")
     private String overview;
     @SerializedName("release_date")
-    private String releadeDate;
+    private String releaseDate;
     //  TODO
     //  Original title is missing because String doesnt handle chinese etc. ...
 
     //  Constructor
     public Movie(int voteCount, int id, boolean video, float voteAverage, String title,
                  int popularity, String posterPath, String originalLanguage, List<Integer> genreIds,
-                 String backdropPath, boolean adult, String overview, String releadeDate) {
+                 String backdropPath, boolean adult, String overview, String releaseDate) {
         this.voteCount = voteCount;
         this.id = id;
         this.video = video;
@@ -53,7 +53,7 @@ public class Movie {
         this.backdropPath = backdropPath;
         this.adult = adult;
         this.overview = overview;
-        this.releadeDate = releadeDate;
+        this.releaseDate = releaseDate;
     }
 
 
@@ -106,8 +106,8 @@ public class Movie {
         return overview;
     }
 
-    public String getReleadeDate() {
-        return releadeDate;
+    public String getReleaseDate() {
+        return releaseDate;
     }
 
 
@@ -160,7 +160,7 @@ public class Movie {
         this.overview = overview;
     }
 
-    public void setReleadeDate(String releadeDate) {
-        this.releadeDate = releadeDate;
+    public void setReleaseDate(String releaseDate) {
+        this.releaseDate = releaseDate;
     }
 }
