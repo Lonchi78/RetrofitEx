@@ -2,6 +2,7 @@ package com.lonchi.andrej.retrofitex.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -31,7 +32,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         final RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.recyclerview);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        //  TODO change Linear -> Grid
+        //mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
 
         //  Tvorba klienta a nadviazanie spojenia
         ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
@@ -45,7 +49,11 @@ public class MainActivity extends AppCompatActivity {
                 List<Movie> movies = null;
                 if (response.body() != null) {
                     movies = response.body().getResults();
-                    mRecyclerView.setAdapter(new MoviesAdapter(movies, R.layout.list_item_movie, getApplicationContext()));
+
+                    //  TODO change list_tem_movie -> carview
+                    //mRecyclerView.setAdapter(new MoviesAdapter(movies, R.layout.list_item_movie, getApplicationContext()));
+                    mRecyclerView.setAdapter(new MoviesAdapter(movies, R.layout.cardview_movie, getApplicationContext()));
+
                     Log.d(TAG, "Number of movies received: " + movies.size());
                 }else{
                     Log.d(TAG, "Empty body!");

@@ -21,52 +21,52 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
 
     private static String POSTER_BASE_URL = "https://image.tmdb.org/t/p/w300/";
     private List<Movie> movies;
-    private int rowLayout;
+    private int itemLayout;
     private Context context;
 
     public static class MovieViewHolder extends RecyclerView.ViewHolder {
-        RelativeLayout moviesLayoutOut;
-        LinearLayout moviesLayout;
+        //RelativeLayout moviesLayoutOut;
+        //LinearLayout moviesLayout;
         ImageView movieImage;
         TextView movieTitle;
-        TextView data;
-        TextView movieDescription;
-        TextView rating;
+        //TextView data;
+        //TextView movieDescription;
+        //TextView rating;
 
 
         public MovieViewHolder(View v) {
             super(v);
-            moviesLayoutOut = (RelativeLayout) v.findViewById(R.id.movies_layout_out);
-            moviesLayout = (LinearLayout) v.findViewById(R.id.movies_layout);
+            //moviesLayoutOut = (RelativeLayout) v.findViewById(R.id.movies_layout_out);
+            //moviesLayout = (LinearLayout) v.findViewById(R.id.movies_layout);
             movieImage = (ImageView) v.findViewById(R.id.movie_image);
             movieTitle = (TextView) v.findViewById(R.id.title);
-            data = (TextView) v.findViewById(R.id.subtitle);
-            movieDescription = (TextView) v.findViewById(R.id.description);
-            rating = (TextView) v.findViewById(R.id.rating);
+            //data = (TextView) v.findViewById(R.id.subtitle);
+            //movieDescription = (TextView) v.findViewById(R.id.description);
+            //rating = (TextView) v.findViewById(R.id.rating);
         }
     }
 
-    public MoviesAdapter(List<Movie> movies, int rowLayout, Context context) {
+    public MoviesAdapter(List<Movie> movies, int itemLayout, Context context) {
         this.movies = movies;
-        this.rowLayout = rowLayout;
+        this.itemLayout = itemLayout;
         this.context = context;
     }
 
     @NonNull
     @Override
     public MovieViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(rowLayout, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(itemLayout, parent, false);
         return new MovieViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MovieViewHolder holder, int position) {
         holder.movieTitle.setText(movies.get(position).getTitle());
-        holder.data.setText(movies.get(position).getReleaseDate());
+        //holder.data.setText(movies.get(position).getReleaseDate());
         //  Chnage description to genres!
         //holder.movieDescription.setText(movies.get(position).getOverview());
-        holder.movieDescription.setText(getMovieGenres(movies.get(position).getGenreIds()));
-        holder.rating.setText(String.valueOf(movies.get(position).getVoteAverage()));
+        //holder.movieDescription.setText(getMovieGenres(movies.get(position).getGenreIds()));
+        //holder.rating.setText(String.valueOf(movies.get(position).getVoteAverage()));
         Glide.with(context).load(POSTER_BASE_URL+movies.get(position).getPosterPath()).into(holder.movieImage);
     }
 

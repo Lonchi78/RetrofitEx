@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">@color/schemeBlue3</color>
-    <color name="colorPrimaryDark">@color/schemeBlue5</color>
-    <color name="colorAccent">@color/schemeBlue1</color>
+    <color name="colorPrimary">@color/schemeAWS1</color>
+    <color name="colorPrimaryDark">@color/schemeAWS5</color>
+    <color name="colorAccent">@color/schemeAWS4</color>
     <color name="colorTransparent">#00ffffff</color>
 
     <color name="orange">#FF3909</color>
@@ -18,4 +18,10 @@
     <color name="schemeBlue3">#9683FA</color>
     <color name="schemeBlue4">#68657A</color>
     <color name="schemeBlue5">#7768C7</color>
+
+    <color name="schemeAWS1">#434551</color>
+    <color name="schemeAWS2">#EDEDED</color>
+    <color name="schemeAWS3">#FDF9ED</color>
+    <color name="schemeAWS4">#43E8E4</color>
+    <color name="schemeAWS5">#3a3b46</color>
 </resources>
