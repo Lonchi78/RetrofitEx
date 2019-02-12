@@ -2,10 +2,14 @@ package com.lonchi.andrej.retrofitex.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Movie {
+public class Movie implements Serializable {
+
+    //  Base url for movie poster
+    private static String POSTER_BASE_URL = "https://image.tmdb.org/t/p/w";
 
     //  Variables
     @SerializedName("vote_count")
@@ -162,5 +166,126 @@ public class Movie {
 
     public void setReleaseDate(String releaseDate) {
         this.releaseDate = releaseDate;
+    }
+
+
+    //  Custom methods
+    public String getPosterUrl(int size) {
+        /*
+         *   Widths:
+         *   92
+         *   154
+         *   185
+         *   342
+         *   500
+         *   780
+         * */
+        String posterSize;
+
+        switch (size){
+            case 0:
+                posterSize = "92";
+                break;
+            case 1:
+                posterSize = "154";
+                break;
+            case 2:
+                posterSize = "185";
+                break;
+            case 3:
+                posterSize = "342";
+                break;
+            case 4:
+                posterSize = "500";
+                break;
+            case 5:
+                posterSize = "780";
+                break;
+            default:
+                posterSize = "342";
+        }
+
+        return POSTER_BASE_URL+posterSize+posterPath;
+    }
+
+    public String getMovieGenres(){
+        String movieGenres = "";
+        String addGenre = "";
+
+        for(int i=0; i<genreIds.size(); i++){
+            //  Decode genre
+            switch(genreIds.get(i)){
+                case 28:
+                    addGenre = "Action";
+                    break;
+                case 12:
+                    addGenre = "Adventure";
+                    break;
+                case 16:
+                    addGenre = "Animation";
+                    break;
+                case 35:
+                    addGenre = "Comedy";
+                    break;
+                case 80:
+                    addGenre = "Crime";
+                    break;
+                case 99:
+                    addGenre = "Documentary";
+                    break;
+                case 18:
+                    addGenre = "Drama";
+                    break;
+                case 10751:
+                    addGenre = "Family";
+                    break;
+                case 14:
+                    addGenre = "Fantasy";
+                    break;
+                case 36:
+                    addGenre = "History";
+                    break;
+                case 27:
+                    addGenre = "Horror";
+                    break;
+                case 10402:
+                    addGenre = "Music";
+                    break;
+                case 9648:
+                    addGenre = "Mystery";
+                    break;
+                case 10749:
+                    addGenre = "Romance";
+                    break;
+                case 878:
+                    addGenre = "Sci-Fi";
+                    break;
+                case 10770:
+                    addGenre = "TV Movie";
+                    break;
+                case 53:
+                    addGenre = "Thriller";
+                    break;
+                case 10752:
+                    addGenre = "War";
+                    break;
+                case 37:
+                    addGenre = "Western";
+                    break;
+                default:
+                    break;
+            }
+
+            //  Add decoded genre
+            movieGenres += addGenre;
+
+            //  Add comma (except last one)
+            if( i+1!=genreIds.size() ){
+                movieGenres += ", ";
+            }
+        }
+
+        //  Return final string of all genres
+        return movieGenres;
     }
 }
